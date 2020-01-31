@@ -1,0 +1,54 @@
+﻿@using GridMvc.Html
+@model IEnumerable<TakipWeb.Entities.TakipDosyaEntity>
+    
+@{
+    ViewBag.Title = "OdemePlaniEkle";
+}
+
+<h2>OdemePlaniEkle</h2>
+<html>
+<head>
+
+    <meta name="viewport" content="width-device-width" />
+    <link href="@Url.Content("/Content/GridMvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("/Scripts/gridmvc.min.js")"></script>
+    <title>TakipDosya Listesi</title>
+
+</head>
+<body>
+
+    <h1>Takip Dosya List</h1>
+    <hr />
+    <div style="width:500px;">
+   {
+
+       Columns.Add(c => c.Id).Titled("ID").Filterable(true);
+       Columns.Add(c => c.MusteriNo).Titled("MUŞTERİ  NO");
+       Columns.Add(c => c.DurumKodu).Titled("DURUM  KODU");
+       Columns.Add(c => c.DosyaId).Titled("DOSYA ID");
+       
+       Columns.Add()
+               .Titled("")
+               .SetWidth(10)
+               .Filterable(true)
+               .Sanitized(false)
+               .Encoded(false)
+               .RenderValueAs(c => Html.ActionLink("Ödeme Planı Ekle", "OdemePlaniEkle", "OdemePlani", new
+               {
+                   takipDosyaId = c.Id,
+                   musteriNo = c.MusteriNo,
+                   durumkodu = c.DurumKodu,
+                  dosyaid = c.DosyaId,
+                   odemePlaniVar = c.OdemePlaniVar
+               }, null).ToHtmlString());
+
+   }).WithPaging(3).Sortable(true)
+
+
+
+
+
+    </div>
+</body>
+</html>

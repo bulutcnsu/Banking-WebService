@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakipWeb.Business", "TakipWeb.Business\TakipWeb.Business.csproj", "{E5FE7FDC-5032-46C3-B862-5131560ECA7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakipWeb.Model", "TakipWeb.Model\TakipWeb.Model.csproj", "{5659B0F8-E5A8-4CE0-BDC0-E8D74D965B1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakipWeb.Web", "TakipWeb.Web\TakipWeb.Web.csproj", "{5F7D0F7E-8525-4B24-8375-07774A8F781D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakipWeb.Service", "TakipWeb.Service\TakipWeb.Service.csproj", "{F1217593-AC28-481C-A6EB-9B34A0E4D993}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "..\Database1\ConsoleApplication1\ConsoleApplication1.csproj", "{779D6648-A465-463A-A0C7-BF38872B2022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakipWeb.Entities", "TakipWeb.Entities\TakipWeb.Entities.csproj", "{28A81FCF-91BF-4DA2-917B-7E7487AC40A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5FE7FDC-5032-46C3-B862-5131560ECA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FE7FDC-5032-46C3-B862-5131560ECA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FE7FDC-5032-46C3-B862-5131560ECA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FE7FDC-5032-46C3-B862-5131560ECA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5659B0F8-E5A8-4CE0-BDC0-E8D74D965B1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5659B0F8-E5A8-4CE0-BDC0-E8D74D965B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5659B0F8-E5A8-4CE0-BDC0-E8D74D965B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5659B0F8-E5A8-4CE0-BDC0-E8D74D965B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7D0F7E-8525-4B24-8375-07774A8F781D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7D0F7E-8525-4B24-8375-07774A8F781D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F7D0F7E-8525-4B24-8375-07774A8F781D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F7D0F7E-8525-4B24-8375-07774A8F781D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1217593-AC28-481C-A6EB-9B34A0E4D993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1217593-AC28-481C-A6EB-9B34A0E4D993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1217593-AC28-481C-A6EB-9B34A0E4D993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1217593-AC28-481C-A6EB-9B34A0E4D993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779D6648-A465-463A-A0C7-BF38872B2022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779D6648-A465-463A-A0C7-BF38872B2022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779D6648-A465-463A-A0C7-BF38872B2022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779D6648-A465-463A-A0C7-BF38872B2022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28A81FCF-91BF-4DA2-917B-7E7487AC40A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28A81FCF-91BF-4DA2-917B-7E7487AC40A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28A81FCF-91BF-4DA2-917B-7E7487AC40A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28A81FCF-91BF-4DA2-917B-7E7487AC40A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

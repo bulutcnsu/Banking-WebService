@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TakipDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OdemePlani">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriNo" Type="nchar" MaxLength="20" />
+          <Property Name="DurumKodu" Type="bit" />
+          <Property Name="DosyaId" Type="int" />
+        </EntityType>
+        <EntityType Name="OdemePlaniTaksit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OdemePlaniId" Type="int" />
+          <Property Name="TaksitNo" Type="int" />
+          <Property Name="TaksitTarihi" Type="datetime" />
+          <Property Name="TaksitTutari" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TakipDosya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubeKodu" Type="nchar" MaxLength="10" />
+          <Property Name="MusteriNo" Type="nchar" MaxLength="20" />
+          <Property Name="BirimKodu" Type="nchar" MaxLength="10" />
+          <Property Name="DosyaDurumTarihi" Type="datetime" />
+          <Property Name="IlKodu" Type="int" />
+          <Property Name="IlceKodu" Type="int" />
+          <Property Name="Borc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TahsilTutari" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="TakipSurec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="MusteriNo" Type="nchar" MaxLength="20" />
+          <Property Name="DosyaId" Type="int" />
+          <Property Name="SurecKodu" Type="int" />
+        </EntityType>
+        <Association Name="FK_OdemePlani_TakipDosya">
+          <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+          <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TakipDosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OdemePlani">
+              <PropertyRef Name="DosyaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OdemePlaniTaksit_OdemePlani">
+          <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="0..1" />
+          <End Role="OdemePlaniTaksit" Type="Self.OdemePlaniTaksit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemePlani">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OdemePlaniTaksit">
+              <PropertyRef Name="OdemePlaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakipSurec_TakipDosya">
+          <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+          <End Role="TakipSurec" Type="Self.TakipSurec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TakipDosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakipSurec">
+              <PropertyRef Name="DosyaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TakipDbModelStoreContainer">
+          <EntitySet Name="OdemePlani" EntityType="Self.OdemePlani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdemePlaniTaksit" EntityType="Self.OdemePlaniTaksit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TakipDosya" EntityType="Self.TakipDosya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TakipSurec" EntityType="Self.TakipSurec" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OdemePlani_TakipDosya" Association="Self.FK_OdemePlani_TakipDosya">
+            <End Role="TakipDosya" EntitySet="TakipDosya" />
+            <End Role="OdemePlani" EntitySet="OdemePlani" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OdemePlaniTaksit_OdemePlani" Association="Self.FK_OdemePlaniTaksit_OdemePlani">
+            <End Role="OdemePlani" EntitySet="OdemePlani" />
+            <End Role="OdemePlaniTaksit" EntitySet="OdemePlaniTaksit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakipSurec_TakipDosya" Association="Self.FK_TakipSurec_TakipDosya">
+            <End Role="TakipDosya" EntitySet="TakipDosya" />
+            <End Role="TakipSurec" EntitySet="TakipSurec" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TakipDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="OdemePlani">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DurumKodu" Type="Boolean" />
+          <Property Name="DosyaId" Type="Int32" />
+          <NavigationProperty Name="TakipDosya" Relationship="Self.FK_OdemePlani_TakipDosya" FromRole="OdemePlani" ToRole="TakipDosya" />
+          <NavigationProperty Name="OdemePlaniTaksit" Relationship="Self.FK_OdemePlaniTaksit_OdemePlani" FromRole="OdemePlani" ToRole="OdemePlaniTaksit" />
+        </EntityType>
+        <EntityType Name="OdemePlaniTaksit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OdemePlaniId" Type="Int32" />
+          <Property Name="TaksitNo" Type="Int32" />
+          <Property Name="TaksitTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TaksitTutari" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="OdemePlani" Relationship="Self.FK_OdemePlaniTaksit_OdemePlani" FromRole="OdemePlaniTaksit" ToRole="OdemePlani" />
+        </EntityType>
+        <EntityType Name="TakipDosya">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubeKodu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="BirimKodu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DosyaDurumTarihi" Type="DateTime" Precision="3" />
+          <Property Name="IlKodu" Type="Int32" />
+          <Property Name="IlceKodu" Type="Int32" />
+          <Property Name="Borc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TahsilTutari" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="OdemePlani" Relationship="Self.FK_OdemePlani_TakipDosya" FromRole="TakipDosya" ToRole="OdemePlani" />
+          <NavigationProperty Name="TakipSurec" Relationship="Self.FK_TakipSurec_TakipDosya" FromRole="TakipDosya" ToRole="TakipSurec" />
+        </EntityType>
+        <EntityType Name="TakipSurec">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DosyaId" Type="Int32" />
+          <Property Name="SurecKodu" Type="Int32" />
+          <NavigationProperty Name="TakipDosya" Relationship="Self.FK_TakipSurec_TakipDosya" FromRole="TakipSurec" ToRole="TakipDosya" />
+        </EntityType>
+        <Association Name="FK_OdemePlani_TakipDosya">
+          <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+          <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TakipDosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OdemePlani">
+              <PropertyRef Name="DosyaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OdemePlaniTaksit_OdemePlani">
+          <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="0..1" />
+          <End Role="OdemePlaniTaksit" Type="Self.OdemePlaniTaksit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemePlani">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OdemePlaniTaksit">
+              <PropertyRef Name="OdemePlaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TakipSurec_TakipDosya">
+          <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+          <End Role="TakipSurec" Type="Self.TakipSurec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TakipDosya">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TakipSurec">
+              <PropertyRef Name="DosyaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TakipDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OdemePlani" EntityType="Self.OdemePlani" />
+          <EntitySet Name="OdemePlaniTaksit" EntityType="Self.OdemePlaniTaksit" />
+          <EntitySet Name="TakipDosya" EntityType="Self.TakipDosya" />
+          <EntitySet Name="TakipSurec" EntityType="Self.TakipSurec" />
+          <AssociationSet Name="FK_OdemePlani_TakipDosya" Association="Self.FK_OdemePlani_TakipDosya">
+            <End Role="TakipDosya" EntitySet="TakipDosya" />
+            <End Role="OdemePlani" EntitySet="OdemePlani" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OdemePlaniTaksit_OdemePlani" Association="Self.FK_OdemePlaniTaksit_OdemePlani">
+            <End Role="OdemePlani" EntitySet="OdemePlani" />
+            <End Role="OdemePlaniTaksit" EntitySet="OdemePlaniTaksit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TakipSurec_TakipDosya" Association="Self.FK_TakipSurec_TakipDosya">
+            <End Role="TakipDosya" EntitySet="TakipDosya" />
+            <End Role="TakipSurec" EntitySet="TakipSurec" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TakipDbModelStoreContainer" CdmEntityContainer="TakipDbEntities">
+          <EntitySetMapping Name="OdemePlani">
+            <EntityTypeMapping TypeName="TakipDbModel.OdemePlani">
+              <MappingFragment StoreEntitySet="OdemePlani">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="DurumKodu" ColumnName="DurumKodu" />
+                <ScalarProperty Name="DosyaId" ColumnName="DosyaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdemePlaniTaksit">
+            <EntityTypeMapping TypeName="TakipDbModel.OdemePlaniTaksit">
+              <MappingFragment StoreEntitySet="OdemePlaniTaksit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OdemePlaniId" ColumnName="OdemePlaniId" />
+                <ScalarProperty Name="TaksitNo" ColumnName="TaksitNo" />
+                <ScalarProperty Name="TaksitTarihi" ColumnName="TaksitTarihi" />
+                <ScalarProperty Name="TaksitTutari" ColumnName="TaksitTutari" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TakipDosya">
+            <EntityTypeMapping TypeName="TakipDbModel.TakipDosya">
+              <MappingFragment StoreEntitySet="TakipDosya">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubeKodu" ColumnName="SubeKodu" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="BirimKodu" ColumnName="BirimKodu" />
+                <ScalarProperty Name="DosyaDurumTarihi" ColumnName="DosyaDurumTarihi" />
+                <ScalarProperty Name="IlKodu" ColumnName="IlKodu" />
+                <ScalarProperty Name="IlceKodu" ColumnName="IlceKodu" />
+                <ScalarProperty Name="Borc" ColumnName="Borc" />
+                <ScalarProperty Name="TahsilTutari" ColumnName="TahsilTutari" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TakipSurec">
+            <EntityTypeMapping TypeName="TakipDbModel.TakipSurec">
+              <MappingFragment StoreEntitySet="TakipSurec">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="DosyaId" ColumnName="DosyaId" />
+                <ScalarProperty Name="SurecKodu" ColumnName="SurecKodu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

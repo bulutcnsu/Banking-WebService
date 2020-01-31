@@ -1,0 +1,15 @@
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\TakipWeb.Model.dll.config
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\TakipWeb.Model.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\TakipWeb.Model.pdb
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\EntityFramework.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\EntityFramework.xml
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\obj\Debug\TakipWeb.Model.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\obj\Debug\TakipWeb.Model.pdb
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\GridMvc.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\PagedList.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\PagedList.Mvc.dll
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\PagedList.xml
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\bin\Debug\PagedList.Mvc.xml
+C:\Users\CANSU\documents\visual studio 2015\Projects\TakipWeb\TakipWeb.Model\obj\Debug\TakipWeb.Model.csprojResolveAssemblyReference.cache

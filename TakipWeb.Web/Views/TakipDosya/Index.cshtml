@@ -1,0 +1,58 @@
+﻿
+@using GridMvc.Html
+@model IEnumerable<TakipWeb.Entities.TakipDosyaEntity>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width-device-width" />
+    <link href="@Url.Content("/Content/GridMvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("/Scripts/gridmvc.min.js")"></script>
+    <title>TakipDosya Listesi</title>
+
+</head>
+<body>
+
+    <h1>Takip Dosya List</h1>
+    <hr />
+    <div style="width:500px;">
+        @Html.Grid(Model).Columns(Columns =>
+   {
+
+       Columns.Add(c => c.Id).Titled("ID").Filterable(true);
+       Columns.Add(c => c.MusteriNo).Titled("MUŞTERİ  NO");
+       Columns.Add(c => c.SubeKodu).Titled("ŞUBE  KODU");
+       Columns.Add(c => c.IlKodu).Titled("İL  KODU");
+       Columns.Add(c => c.Borc).Titled("BORÇ");
+       Columns.Add(c => c.TahsilTutari).Titled("TAHSİL TUTARI");
+       Columns.Add()
+               .Titled("")
+               .SetWidth(10)
+               .Filterable(true)
+               .Sanitized(false)
+               .Encoded(false)
+               .RenderValueAs(c => Html.ActionLink("Ödeme Planı Detay", "OdemePlaniYap", "OdemePlani", new {
+                   takipDosyaId = c.Id,
+                   musteriNo = c.MusteriNo,
+                   borc = c.Borc,
+                   tahsilTutari = c.TahsilTutari,
+                   odemePlaniVar = c.OdemePlaniVar }, null).ToHtmlString());
+
+   }).WithPaging(3).Sortable(true)
+
+
+
+
+    </div>
+</body>
+</html>
+
+

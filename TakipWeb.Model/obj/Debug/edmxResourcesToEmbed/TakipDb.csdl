@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TakipDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="OdemePlani">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="DurumKodu" Type="Boolean" />
+    <Property Name="DosyaId" Type="Int32" />
+    <NavigationProperty Name="TakipDosya" Relationship="Self.FK_OdemePlani_TakipDosya" FromRole="OdemePlani" ToRole="TakipDosya" />
+    <NavigationProperty Name="OdemePlaniTaksit" Relationship="Self.FK_OdemePlaniTaksit_OdemePlani" FromRole="OdemePlani" ToRole="OdemePlaniTaksit" />
+  </EntityType>
+  <EntityType Name="OdemePlaniTaksit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OdemePlaniId" Type="Int32" />
+    <Property Name="TaksitNo" Type="Int32" />
+    <Property Name="TaksitTarihi" Type="DateTime" Precision="3" />
+    <Property Name="TaksitTutari" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="OdemePlani" Relationship="Self.FK_OdemePlaniTaksit_OdemePlani" FromRole="OdemePlaniTaksit" ToRole="OdemePlani" />
+  </EntityType>
+  <EntityType Name="TakipDosya">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubeKodu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="BirimKodu" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DosyaDurumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="IlKodu" Type="Int32" />
+    <Property Name="IlceKodu" Type="Int32" />
+    <Property Name="Borc" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TahsilTutari" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="OdemePlani" Relationship="Self.FK_OdemePlani_TakipDosya" FromRole="TakipDosya" ToRole="OdemePlani" />
+    <NavigationProperty Name="TakipSurec" Relationship="Self.FK_TakipSurec_TakipDosya" FromRole="TakipDosya" ToRole="TakipSurec" />
+  </EntityType>
+  <EntityType Name="TakipSurec">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="MusteriNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="DosyaId" Type="Int32" />
+    <Property Name="SurecKodu" Type="Int32" />
+    <NavigationProperty Name="TakipDosya" Relationship="Self.FK_TakipSurec_TakipDosya" FromRole="TakipSurec" ToRole="TakipDosya" />
+  </EntityType>
+  <Association Name="FK_OdemePlani_TakipDosya">
+    <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+    <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TakipDosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OdemePlani">
+        <PropertyRef Name="DosyaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OdemePlaniTaksit_OdemePlani">
+    <End Role="OdemePlani" Type="Self.OdemePlani" Multiplicity="0..1" />
+    <End Role="OdemePlaniTaksit" Type="Self.OdemePlaniTaksit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OdemePlani">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OdemePlaniTaksit">
+        <PropertyRef Name="OdemePlaniId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TakipSurec_TakipDosya">
+    <End Role="TakipDosya" Type="Self.TakipDosya" Multiplicity="0..1" />
+    <End Role="TakipSurec" Type="Self.TakipSurec" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TakipDosya">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TakipSurec">
+        <PropertyRef Name="DosyaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TakipDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="OdemePlani" EntityType="Self.OdemePlani" />
+    <EntitySet Name="OdemePlaniTaksit" EntityType="Self.OdemePlaniTaksit" />
+    <EntitySet Name="TakipDosya" EntityType="Self.TakipDosya" />
+    <EntitySet Name="TakipSurec" EntityType="Self.TakipSurec" />
+    <AssociationSet Name="FK_OdemePlani_TakipDosya" Association="Self.FK_OdemePlani_TakipDosya">
+      <End Role="TakipDosya" EntitySet="TakipDosya" />
+      <End Role="OdemePlani" EntitySet="OdemePlani" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OdemePlaniTaksit_OdemePlani" Association="Self.FK_OdemePlaniTaksit_OdemePlani">
+      <End Role="OdemePlani" EntitySet="OdemePlani" />
+      <End Role="OdemePlaniTaksit" EntitySet="OdemePlaniTaksit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TakipSurec_TakipDosya" Association="Self.FK_TakipSurec_TakipDosya">
+      <End Role="TakipDosya" EntitySet="TakipDosya" />
+      <End Role="TakipSurec" EntitySet="TakipSurec" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

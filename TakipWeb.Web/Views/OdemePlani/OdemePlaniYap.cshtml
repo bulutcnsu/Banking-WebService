@@ -1,0 +1,51 @@
+﻿@using GridMvc.Html
+@using GridMvc
+@model TakipWeb.Entities.TakipDosyaEntity
+
+
+
+<h2>OdemePlaniYap</h2>
+
+
+<div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Model.Id
+                @Model.MusteriNo
+                @Model.DurumKodu
+
+              
+            
+                
+                @using (Html.BeginForm("OdemePlaniEkle", "OdemePlani", FormMethod.Post))
+             
+                    {
+                    <input name="musteriNo" value="@Model.MusteriNo" class="field left" />
+                    <input name="DosyaId" value="@Model.Id " class="field left" />
+                    <input name="DurumKodu" value="@Model.DurumKodu " class="field left" />
+                    <br/>
+                    <input name="tahsilTutari" value="@Model.TahsilTutari " class="field left" />
+                    <input name="borc" value="@Model.Borc " class="field left" />
+
+
+                    <select id="State" name="TaksitNo">
+                        <option value="">Taksit sayısı seçiniz.</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+
+                    <button type="submit">Ödeme Planı Oluştur</button>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+

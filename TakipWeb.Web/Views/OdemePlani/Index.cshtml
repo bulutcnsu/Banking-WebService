@@ -1,0 +1,55 @@
+﻿
+@using GridMvc.Html
+@model IEnumerable<TakipWeb.Entities.OdemePlaniEntity>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+<h2>Index</h2>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width-device-width" />
+    <link href="@Url.Content("/Content/GridMvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("/Scripts/gridmvc.min.js")"></script>
+    <title>TakipDosya Listesi</title>
+
+</head>
+<body>
+
+    <h1>Odeme Plani List</h1>
+    <hr />
+    <div style="width:500px;">
+        @Html.Grid(Model).Columns(Columns =>
+   {
+
+       Columns.Add(c => c.Id).Titled("ID").Filterable(true);
+       Columns.Add(c => c.MusteriNo).Titled("MUŞTERİ  NO");
+       Columns.Add(model => model.MusteriNo).Titled("MUŞTERİ NO").Filterable(true);
+       Columns.Add()
+
+               .Titled("")
+               .SetWidth(10)
+               .Filterable(true)
+               .Sanitized(false)
+               .Encoded(false)
+               .RenderValueAs(c => Html.ActionLink("OdemePlani Göster", "OdemePlaniGoster", "OdemePlani", new { PMusteriNo = c.MusteriNo }, null).ToHtmlString());
+
+
+
+       /*       .Encoded(false)
+              .Sanitized(false)
+              .SetWidth(30)
+              .RenderValueAs(c => @<button type="submit">Submit</button>);*/
+
+
+   }).WithPaging(3).Sortable(true)
+
+
+    </div>
+</body>
+</html>
